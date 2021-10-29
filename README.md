@@ -1,5 +1,5 @@
 # *Name of our app
-##  Project 2: Interactive Front-End Application
+##  Project 2
 
 URL: https://nicoledodge.github.io/Project2/  
 Version 1.0  
