@@ -1,17 +1,26 @@
 const User = require('./User');
 const Activity = require('./Activity')
-const Session = require('./Session')
+const Timeslot = require('./Timeslot')
 
-User.hasMany(Activity, {
-    foreignKey: 'user_id',
+
+User.belongsToMany(Timeslot, {
+      foreignKey: 'timeslot_id',
+      through: 'booked_sessions'
   });
   
-Activity.belongsTo(User, {
-    foreignKey: 'user_id',
+Activity.hasMany(Timeslot, {
+    foreignKey: 'activity_id',
   });
 
-// Session.belongsTo(Activity,{
-//     foreignKey: session_
-// })
+Timeslot.belongsTo(Activity,{
+    foreignKey: 'activity_id',
+});
 
-module.exports = { User, Activity, Session };
+Timeslot.belongsToMany(User,{
+    foreignKey: 'user_id',
+    through: 'booked_sessions',
+})
+
+
+
+module.exports = { User, Activity, Timeslot };
