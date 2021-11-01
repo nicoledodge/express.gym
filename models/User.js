@@ -3,11 +3,12 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class User extends Model {
+  // Method to compare hashed and inputed password
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
-
+// Set up user model
 User.init(
   {
     id: {
@@ -16,7 +17,11 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    last_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -35,12 +40,51 @@ User.init(
         len: [8],
       },
     },
+    // It needs to be formated as month/day/year and slashes or dashes ok.
+    date_of_birth: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      validate:{
+        isDate: true,
+      }
+    },
+    phone_number: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [10,10],
+        isNumeric: true
+      },
+    },
+    zipcode: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [5,5],
+        isNumeric: true
+      },
+    },
   },
   {
     hooks: {
       beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
+        // check for is old enough and then set a validator constant
+        let ageCheck = new Date();
+        ageCheck.setFullYear(ageCheck.getFullYear() - 18);
+        let birthDate = new Date(newUserData.date_of_birth);
+
+        if ((ageCheck < birthDate)) {
+          throw new Error('Invalid age.');
+        } else if(newUserData.zipcode.length !== 5){
+          throw new Error('Invalid location.');
+         } else if(newUserData.phone_number.length !== 10){
+            throw new Error('Invalid phone number.');
+        } else if(newUserData.password.length < 8) {
+          throw new Error('Invalid password length.');
+        } else {
+          newUserData.password = await bcrypt.hash(newUserData.password, 10);
+          return newUserData;  
+        }
       },
     },
     sequelize,
