@@ -64,6 +64,10 @@ User.init(
         isNumeric: true
       },
     },
+    is_VIP: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   },
   {
     hooks: {
