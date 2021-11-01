@@ -1,7 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
+const { Activity } = require('.');
 const sequelize = require('../config/connection');
 
-class Class extends Model {}
+class Atctivity extends Model {}
 
 Gallery.init(
   {
@@ -32,4 +33,4 @@ Gallery.init(
   }
 );
 
-module.exports = Gallery;
+module.exports = Activity;
