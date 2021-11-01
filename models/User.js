@@ -4,8 +4,8 @@ const sequelize = require('../config/connection');
 
 class User extends Model {
   // Method to compare hashed and inputed password
-  checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
+  async checkPassword(loginPw) {
+    return bcrypt.compare(loginPw, this.password);
   }
 }
 // Set up user model
@@ -42,7 +42,7 @@ User.init(
     },
     // It needs to be formated as month/day/year and slashes or dashes ok.
     date_of_birth: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: false,
       validate:{
         isDate: true,

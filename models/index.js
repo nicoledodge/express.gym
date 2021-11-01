@@ -10,8 +10,8 @@ Activity.belongsTo(User, {
     foreignKey: 'user_id',
   });
 
-Session.belongsTo(Activity,{
-    foreignKey: session_
-})
+// Session.belongsTo(Activity,{
+//     foreignKey: session_
+// })
 
 module.exports = { User, Activity, Session };
