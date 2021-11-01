@@ -1,4 +1,4 @@
-const { Model, DataTypes, BOOLEAN } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
@@ -65,7 +65,7 @@ User.init(
       },
     },
     is_VIP: {
-      type: BOOLEAN,
+      type: DataTypes.BOOLEAN,
       defaultValue: false
     }
   },
