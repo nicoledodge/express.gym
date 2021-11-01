@@ -3,11 +3,12 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class User extends Model {
+  // Method to compare hashed and inputed password
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
-
+// Set up user model
 User.init(
   {
     id: {
@@ -39,24 +40,29 @@ User.init(
         len: [8],
       },
     },
-    phone_number:{
+    // It needs to be formated as month/day/year and slashes or dashes ok.
+    date_of_birth: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      validate:{
+        isDate: true,
+      }
+    },
+    phone_number: {
       type: DataTypes.STRING,
       allowNull: false,
-
+      validate: {
+        len: [10,10],
+        isNumeric: true
+      },
     },
     zipcode: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isNumeric: true,
         len: [5,5],
+        isNumeric: true
       },
-    },
-    date_of_birth: {
-      type: DataTypes.DATEONLY,
-      validate:{
-        isDate: true,
-      }
     },
   },
   {
@@ -70,6 +76,8 @@ User.init(
           throw new Error('Invalid age.');
         } else if(newUserData.zipcode.length !== 5){
           throw new Error('Invalid location.');
+         } else if(newUserData.phone_number.length !== 10){
+            throw new Error('Invalid phone number.');
         } else if(newUserData.password.length < 8) {
           throw new Error('Invalid password length.');
         } else {
