@@ -1,0 +1,25 @@
+<div>
+    <div>
+        <button>Mon</button>
+        <button>Tue</button>
+        <button>Wed</button>
+        <button>Thur</button>
+        <button>Fri</button>
+        <button>Sat</button>
+        <button>Sun</button>
+    </div>
+
+    <table>
+        <tr>
+            <th>Class Day/Time</th>
+            <th>Class Name</th>
+            <th>Instructor</th>
+            <th>Location</th>
+        </tr>
+        <tr>
+            {{#each classes as |class|}}
+            {{>class}}
+            {{/each}}
+        </tr>
+    </table>
+</div>
