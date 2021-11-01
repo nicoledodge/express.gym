@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Class extends Model {}
+class Activity extends Model {}
 
-Gallery.init(
+Activity.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,21 +15,17 @@ Gallery.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    starting_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    ending_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'gallery',
+    modelName: 'activity',
   }
 );
 
-module.exports = Gallery;
+module.exports = Activity;
