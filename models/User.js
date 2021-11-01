@@ -67,6 +67,10 @@ User.init(
     is_VIP: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    timeslot_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     }
   },
   {
