@@ -1,11 +1,16 @@
 const User = require('./User');
-const Activity = require('./Activity')
-const Timeslot = require('./Timeslot')
+const Activity = require('./Activity');
+const Timeslot = require('./Timeslot');
+const Booked = require('./Booked')
 
 
 User.belongsToMany(Timeslot, {
       foreignKey: 'timeslot_id',
-      through: 'booked_sessions'
+      through: {
+        model: Booked,
+        unique: false
+      },
+      as: 'booked_timeslots'
   });
   
 Activity.hasMany(Timeslot, {
@@ -18,9 +23,13 @@ Timeslot.belongsTo(Activity,{
 
 Timeslot.belongsToMany(User,{
     foreignKey: 'user_id',
-    through: 'booked_sessions',
+    through: {
+      model: Booked,
+      unique: false
+    },
+    as: 'user_list'
 })
 
 
 
-module.exports = { User, Activity, Timeslot };
+module.exports = { User, Activity, Timeslot, Booked };

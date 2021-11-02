@@ -67,10 +67,6 @@ User.init(
     is_VIP: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    },
-    timeslot_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
     }
   },
   {
@@ -80,7 +76,6 @@ User.init(
         let ageCheck = new Date();
         ageCheck.setFullYear(ageCheck.getFullYear() - 18);
         let birthDate = new Date(newUserData.date_of_birth);
-
         if ((ageCheck < birthDate)) {
           throw new Error('Invalid age.');
         } else if(newUserData.zipcode.length !== 5){

@@ -37,15 +37,7 @@ Timeslot.init(
           model: 'activity',
           key: 'id',
         },
-      },
-    user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-            model: 'user',
-            key: 'id',
-          },
-    }
+      }
   },
   {
     sequelize,

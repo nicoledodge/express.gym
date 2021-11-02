@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Timeslot, Booked, Activity } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.post('/signup', async (req, res) => {
   try {
@@ -59,6 +60,24 @@ router.post('/login', async (req, res) => {
       });
     } else {
       res.status(404).end();
+    }
+  });
+
+  router.get('/user-timeslot/:id',  async (req, res) => {
+    try {
+      const userData = await User.findByPk(req.params.id, {
+        
+        include: [{ model: Timeslot, through: Booked, as: 'booked_timeslots' } ]
+      });
+  
+      if (!userData) {
+        res.status(404).json({ message: 'No reader found with that id!' });
+        return;
+      }
+  
+      res.status(200).json(userData);
+    } catch (err) {
+      res.status(500).json(err);
     }
   });
 
