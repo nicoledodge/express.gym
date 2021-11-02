@@ -150,9 +150,9 @@ thead tr:nth-child(3) th {
 .fa {
     color: white;
 }
-ul.socials li {
+/*ul.socials li {*/
 
-}
+/*}*/
 .fa.fa-calendar {
     color: white;
 }
@@ -253,7 +253,9 @@ footer.nb-footer {
         justify-content: center;
     }
 }
-
+ul.navbar-nav {
+    justify-content: space-between;
+}
 .social-media {
     text-align: center;
     align-items: center;
