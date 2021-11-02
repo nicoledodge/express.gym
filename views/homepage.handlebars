@@ -1,39 +1,33 @@
+<!--<head>-->
+<!--    <title></title>-->
+
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<!--</head>-->
 <div class="container">
-    <div class="row">
+    <div class="row m-4">
         <div class="col-lg-3">
             <div class="card">
-                <h3>Your Gym</h3>
-                <h3>Gym Location</h3>
-                <p>Gym address</p>
-                <p>gym phone number</p>
+               {{> sidebar}}
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-lg-9">
-            <div>
-                <div>
-                    <button>Mon</button>
-                    <button>Tue</button>
-                    <button>Wed</button>
-                    <button>Thur</button>
-                    <button>Fri</button>
-                    <button>Sat</button>
-                    <button>Sun</button>
-                </div>
-
-                <table>
-                    <tr>
-                        <th>Class Day/Time</th>
-                        <th>Class Name</th>
-                        <th>Instructor</th>
-                        <th>Location</th>
-                    </tr>
-                    <tr>
-                        {{#each classes as |class|}}
-                            {{>class}}
-                        {{/each}}
-                    </tr>
-                </table>
-            </div>
+        <div class="container-fluid col-xs-12 col-sm-12 col-lg-9 px-0 px-sm-4 mx-auto">
+            {{> activities}}
         </div>
+        <!--                <table>-->
+        <!--                    <tr>-->
+        <!--                        <th>Class Day/Time</th>-->
+        <!--                        <th>Class Name</th>-->
+        <!--                        <th>Instructor</th>-->
+        <!--                        <th>Location</th>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+            <!--                        {{#each classes as |class|}}-->
+        <!--                            {{>class}}-->
+            <!--                        {{/each}}-->
+        <!--                    </tr>-->
+        <!--                </table>-->
     </div>
 </div>
+<script src="public/js/reserveClass.js"></script>
