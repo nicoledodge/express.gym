@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Timeslot } = require('../../models');
+const { User, Activity, Timeslot } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
@@ -34,19 +34,18 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/timeslot/:id',  async (req, res) => {
+router.get('/',  async (req, res) => {
   try {
-    const userData = await User.findByPk(req.params.id, {
-      
-      include: [{ model: Timeslot } ],
+    const timeslotData = await Timeslot.findAll({
+      include:  [{ model: Activity} ]
     });
 
-    if (!userData) {
-      res.status(404).json({ message: 'No reader found with that id!' });
+    if (!timeslotData) {
+      res.status(404).json({ message: 'No timeslot found with that id!' });
       return;
     }
 
-    res.status(200).json(userData);
+    res.status(200).json(timeslotData);
   } catch (err) {
     res.status(500).json(err);
   }
