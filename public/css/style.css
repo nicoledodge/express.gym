@@ -14,7 +14,7 @@ body {
 
 
 .navbar-nav {
-    display: inline-block;
+    display: none;
     /*justify-content: center;*/
     float: none;
 }
@@ -150,6 +150,9 @@ thead tr:nth-child(3) th {
 .fa {
     color: white;
 }
+ul.socials li {
+
+}
 .fa.fa-calendar {
     color: white;
 }
@@ -176,8 +179,13 @@ thead tr:nth-child(3) th {
     width: 50px;
     text-align: center;
 }
+
+hr {
+    color: #fff;
+    background-color: #fff;
+}
 .hr-or {
-    background-color: #cdcdcd;
+    background-color: #fff;
     height: 1px;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
@@ -233,19 +241,20 @@ footer.nb-footer .copyright p {
     margin: 0;
     padding: 0; }
 
-.form-control {
-    width: 25%;
-
-}
 footer {
     background: #222;
 }
 footer.nb-footer {
     background: #222;
     border-top: 4px solid #b78c33; }
-/*@media screen and (min-width: 768px) {*/
-/*    .navbar-collapse.collapse {*/
-/*        display: none;*/
-/*        justify-content: center;*/
-/*    }*/
-/*}*/
+@media screen and (min-width: 768px) {
+    .navbar-collapse.collapse {
+        display: none;
+        justify-content: center;
+    }
+}
+
+.social-media {
+    text-align: center;
+    align-items: center;
+}
