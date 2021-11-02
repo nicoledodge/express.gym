@@ -6,6 +6,7 @@
     "password": "asdfasdfasdfas123",
     "date_of_birth": "02-25-1997",
     "phone_number" : "1111111134",
-    "zipcode" : "75555"
+    "zipcode" : "75555",
+    "timeslot_id": "1"
   }
 ]

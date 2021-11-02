@@ -1,5 +1,2 @@
 DROP DATABASE IF EXISTS gym_db;
 CREATE DATABASE gym_db;
-
-USE gym_db;
-SELECT * FROM user
