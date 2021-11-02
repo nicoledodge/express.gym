@@ -3,7 +3,7 @@ const { User, Timeslot, Booked } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/:id',  async (req, res) => {
     try {
         const timeslotData = await Timeslot.findOne({ where: { id: req.params.id } });
         if (!timeslotData) {
@@ -13,8 +13,7 @@ router.post('/', withAuth, async (req, res) => {
           return;
         }
           const newBooked = await Booked.create({
-            ...req.body,
-            timeslot_id: req.body.id,
+            timeslot_id: req.params.id,
           //   Change to req.session.user_id
             user_id: req.body.user_id,
           });
