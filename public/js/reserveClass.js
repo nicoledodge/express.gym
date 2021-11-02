@@ -22,7 +22,7 @@ async function timeslotHandler(event) {
     console.log(time);
     const node = event.target.parentElement.parentElement.parentElement;
     
-    console.log(node.firstChild);
+    console.log(node);
 } 
 
 
