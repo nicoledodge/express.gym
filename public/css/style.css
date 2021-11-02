@@ -228,6 +228,11 @@ footer {
 footer.nb-footer {
     background: #222;
     border-top: 4px solid #b78c33; }
+
+
+.modal .modal-dialog {
+    left: 0;
+}
 /*@media screen and (min-width: 768px) {*/
 /*    .navbar-collapse.collapse {*/
 /*        display: none;*/
