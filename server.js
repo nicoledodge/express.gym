@@ -3,10 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
-<<<<<<< HEAD
-=======
 const passport = require('passport');
->>>>>>> b94013ddb88a0e4c1c83c46a5400a87acafc6b1a
 // const helpers = require('./utils/helpers');
 
 const sequelize = require('./config/connection');
@@ -16,11 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Set up Handlebars.js engine with custom helpers
-<<<<<<< HEAD
-const hbs = exphbs.create(/*{ helpers }*/);
-=======
 const hbs = exphbs.create();
->>>>>>> b94013ddb88a0e4c1c83c46a5400a87acafc6b1a
 
 const sess = {
   secret: 'Super secret secret',

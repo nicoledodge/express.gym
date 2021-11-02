@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "project2",
-=======
   "name": "gym-db",
->>>>>>> b94013ddb88a0e4c1c83c46a5400a87acafc6b1a
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
