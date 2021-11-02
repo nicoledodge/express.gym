@@ -7,5 +7,14 @@
     "date_of_birth": "02-25-1997",
     "phone_number" : "1111111134",
     "zipcode" : "75555"
+  },
+  {
+    "first_name": "Ethan",
+    "last_name": "Cho",
+    "email": "codeGOAT@hotmail.com",
+    "password": "Ethan1234",
+    "date_of_birth": "02-25-1957",
+    "phone_number" : "1118111134",
+    "zipcode" : "79555"
   }
 ]

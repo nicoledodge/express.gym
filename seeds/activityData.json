@@ -1,6 +1,10 @@
 [
-    {
-      "name": "Yoga",
-      "description": "Come stretch with us"
-    }
+  {
+    "name": "Yoga",
+    "description": "Come stretch with us"
+  },
+  {
+    "name": "BodyBuilding",
+    "description": "GET BIG SON!"
+  }
 ]

@@ -23,13 +23,6 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  await Booked.create({
-    user_id: 1,
-    timeslot_id: 1
-  }).catch((err) => {
-    console.log(err);
-  });
-
   process.exit(0);
 };
 
