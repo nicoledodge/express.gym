@@ -5,10 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Express.Gym</title>
-    <link rel="stylesheet" type="text/css" href="/css/jass.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<!--    <link href='//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet'/>-->
+    <link rel="stylesheet" type="text/css" href="public/css/jass.css">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+
 </head>
 
 <body>
@@ -18,25 +23,28 @@
         </nav>
     </header>
 
-    <img src="https://github.com/nicoledodge/Portfolio-Page/blob/main/assets/images/cloud-icloud-binary-code-wallpaper-preview.jpeg?raw=true" alt="raining ing binary">
-
 
     <main>
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">Fluid jumbotron</h1>
-                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-            </div>
+        <div>
+                <img src="https://github.com/nicoledodge/express.gym/blob/main/public/images/workout%20people.png?raw=true" class="img-fluid" alt="random workout people">
         </div>
-        <div class="container">
+        <div class="container body-container">
             {{{body}}}
         </div>
     </main>
+    <footer class="nb-footer">
+        {{> footer}}
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<!--    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+    <script src="public/js/reserveClass.js"></script>
     {{#if logged_in}}
-    <script src="/js/logout.js"></script>
+    <script src="public/js/logout.js"></script>
     {{/if}}
 </body>
 

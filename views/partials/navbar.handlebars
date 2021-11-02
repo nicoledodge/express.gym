@@ -1,20 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">express.gym</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+    <a class="navbar-brand" href="/">express.gym</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+    <div class="row navbar-collapse collapse align-items-center">
+        <ul class="navbar-nav mx-auto text-center justify-content-center justify-space-around-lg">
+            <li class="nav-item active col-md-3">
                 <a class="nav-link" href="/home">Home</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/amenities">Amenities</a>
+            <li class="nav-item active col-md-3">
+                <a class="nav-link" href="/views/partials/amenities.handlebars">Amenities</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item active col-md-3">
                 <a class="nav-link" href="/reservations">Class Schedule</a>
             </li>
         </ul>
@@ -24,6 +24,6 @@
     {{else}}
         <a href="/login">Login</a>
     {{/if}}
+
+
 </nav>
-
-
