@@ -67,9 +67,9 @@ router.post('/login', async (req, res) => {
     }
   });
 
-  router.get('/user-timeslot/:id',  async (req, res) => {
+  router.get('/user-timeslot/',  async (req, res) => {
     try {
-      const userData = await User.findByPk(req.params.id, {
+      const userData = await User.findByPk(req.session.user_id, {
         
         include: [{ model: Timeslot, through: Booked, as: 'booked_timeslots' } ]
       });

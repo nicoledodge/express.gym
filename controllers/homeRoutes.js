@@ -10,10 +10,14 @@ router.get('/', async (req, res) => {
 
 router.get('/login', async (req, res) => {
   res.render('login');
-})
+});
 
 router.get('/signup', async (req, res) => {
   res.render('signup');
-})
+});
+
+router.get('/profile', async (req, res) => {
+  res.render('profile', {logged_in: req.session.logged_in, user_id: req.session.user_id});
+});
 
 module.exports = router;
