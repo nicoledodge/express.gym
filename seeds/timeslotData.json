@@ -3,6 +3,16 @@
       "instructor": "Nikki",
       "time": "19:00",
       "activity_id": 1
+    },
+    {
+      "instructor": "Phillip",
+      "time": "12:00",
+      "activity_id": 2
+    },
+    {
+      "instructor": "Some Dude",
+      "time": "5:00",
+      "activity_id": 1
     }
 ]
   
