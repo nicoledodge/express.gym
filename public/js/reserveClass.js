@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
     $('.datepicker').datepicker({
         format: 'dd-mm-yyyy',
@@ -6,12 +6,14 @@ $(document).ready(function(){
         startDate: '0d'
     });
 
-    $('.cell').click(function(){
+    $('.cell').click(function () {
         $('.cell').removeClass('select');
         $(this).addClass('select');
     });
 
 });
+
+$.backstretch("/images/img.jpg");
 
 // const datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value
 // $.fn.bootstrapDP = datepicker;
@@ -21,7 +23,7 @@ async function timeslotHandler(event) {
     // time should represent the timeslot id
     const timeId = event.target.getAttribute('data-id');
     console.log(timeId);
-    
+
     // const response = await fetch(`/api/booked/${timeId}`, {
     //     method: 'POST',
     //     body: JSON.stringify({timeslot_id: timeId}),
@@ -32,13 +34,11 @@ async function timeslotHandler(event) {
     // }else{
     //     alert(response.statusText);
     // }
-} 
-
-
+}
 
 const timeslots = document.querySelectorAll('.cell');
 console.log(timeslots);
 
-for(let i = 0; i<timeslots.length; i++) {
+for (let i = 0; i < timeslots.length; i++) {
     timeslots[i].addEventListener('click', timeslotHandler);
 }

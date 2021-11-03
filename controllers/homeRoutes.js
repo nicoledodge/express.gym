@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const {
   Activity,
-  Timeslot
+  Timeslot,
+  Booked,
+  User
 } = require('../models');
 const moment = require('moment')
 
@@ -47,7 +49,20 @@ router.get('/signup', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
+  const bookedData = await Booked.findAll({
+    where:{
+      user_id: req.session.user_id
+    },
+    include: 
+      [
+        {
+          model: Timeslot
+        }
+      ]
+  });
+  // serialize bookedData
   res.render('profile', {
+    // send serialized bookedData to handlebar,
     logged_in: req.session.logged_in,
     user_id: req.session.user_id
   });
