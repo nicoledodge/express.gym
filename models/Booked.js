@@ -18,7 +18,7 @@ Booked.init(
       references: {
         model: 'user',
         key: 'id',
-        unique: false
+        unique: true
       }
     },
     timeslot_id: {

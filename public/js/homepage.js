@@ -34,10 +34,13 @@ async function timeslotHandler(event) {
             'Content-Type': 'application/json'
         }
     });
+    const message = await response.json();
     if (response.ok) {
         document.location.replace('/profile');
     } else {
-        alert(response.statusText);
+        
+        // console.log(message);
+        alert(message.message);
     }
 }
 

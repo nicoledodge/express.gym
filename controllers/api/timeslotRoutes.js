@@ -78,6 +78,10 @@ router.post('/:id', async (req, res) => {
         });
       return;
     }
+    const existingBooked = await Booked.findOne({where: {user_id: req.session.user_id}});
+    if(existingBooked){
+      res.status(400).json({"message":"You are already signed up for this class!"});
+    }
     const newBooked = await Booked.create({
       timeslot_id: req.params.id,
       //   Change to req.session.user_id
