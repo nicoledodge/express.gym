@@ -23,7 +23,7 @@ async function timeslotHandler(event) {
     event.preventDefault();
     // time should represent the timeslot id
     const timeId = event.target.getAttribute('data-id');
-    console.log(timeId);
+    // console.log(timeId);
 
     const response = await fetch(`/api/booked/${timeId}`, {
         method: 'POST',
@@ -42,7 +42,7 @@ async function timeslotHandler(event) {
 }
 
 const timeslots = document.querySelectorAll('.cell');
-console.log(timeslots);
+// console.log(timeslots);
 
 for (let i = 0; i < timeslots.length; i++) {
     timeslots[i].addEventListener('click', timeslotHandler);

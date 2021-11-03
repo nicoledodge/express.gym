@@ -29,6 +29,7 @@ Booked.init(
         unique: false
       }
     }
+    // add a capacity column that auto increments with every creation and has a validation that checks if the capacity is over 20
   },
   {
     sequelize,
