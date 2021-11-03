@@ -18,11 +18,20 @@ $(document).ready(function(){
 
 async function timeslotHandler(event) {
     event.preventDefault();
-    const time = event.target.textContent;
-    console.log(time);
-    const node = event.target.parentElement.parentElement.parentElement;
+    // time should represent the timeslot id
+    const timeId = event.target.getAttribute('data-id');
+    console.log(timeId);
     
-    console.log(node);
+    // const response = await fetch(`/api/booked/${timeId}`, {
+    //     method: 'POST',
+    //     body: JSON.stringify({timeslot_id: timeId}),
+    //     headers: {'Content-Type': 'application/json'}
+    // });
+    // if(response.ok) {
+    //     document.location.replace('/profile');
+    // }else{
+    //     alert(response.statusText);
+    // }
 } 
 
 
