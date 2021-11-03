@@ -77,7 +77,13 @@ router.get('/profile/:id',  async (req, res) => {
   }
 
 });
-// send serialized bookedData to handlebar,
+
+router.get('/forgotpassword', async(req, res) => {
+  res.render('forgotpassword',{
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id
+  });
+});
 
 router.get('/amenities', async (req, res) => {
   res.render('amenities', {
