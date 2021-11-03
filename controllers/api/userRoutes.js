@@ -60,24 +60,6 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-<<<<<<< HEAD
-  router.get('/bookings/:id', async (req, res) => {
-    try {//for testing add req.params.id for functioning add req.session.user_id
-      const userData = await User.findByPk(req.params.id, {
-        include: [{ model: Timeslot, through: Booked, as: 'booked_timeslots', include: [{model: Activity}] } ]
-      });
-  
-      if (!userData) {
-        res.status(404).json({ message: 'No reader found with that id!' });
-        return;
-      }
-  
-      res.status(200).json(userData);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-=======
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
@@ -93,7 +75,6 @@ router.post('/login', async (req, res) => {
     res.status(400).json(err);
   }
 });
->>>>>>> 46db33d919d1d589cccc50be28fd8373ccb6d31d
 
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
@@ -105,32 +86,7 @@ router.post('/logout', (req, res) => {
   }
 });
 
-router.get('/user-timeslot/', withAuth, async (req, res) => {
-  try { //for testing add req.params.id for functioning add req.session.user_id
-    const userData = await User.findByPk(req.session.user_id, {
 
-      include: [{
-        model: Timeslot,
-        through: Booked,
-        as: 'booked_timeslots',
-        include: [{
-          model: Activity
-        }]
-      }]
-    });
-
-    if (!userData) {
-      res.status(404).json({
-        message: 'No reader found with that id!'
-      });
-      return;
-    }
-
-    res.status(200).json(userData.booked_timeslots);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 router.put('/forgotpassword', async (req, res) => {
   try {
