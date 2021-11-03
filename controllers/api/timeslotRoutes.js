@@ -67,35 +67,41 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/:id', async (req, res) => {
+router.post('/:id', withAuth, async (req, res) => {
   try {
-    const timeslotData = await Timeslot.findByPk(req.params.id);
-    if (!timeslotData) {
-      res
-        .status(404)
-        .json({
-          message: "Timeslot doesn't exist"
-        });
-      return;
-    }
-    const existingBooked = await Booked.findOne({
-      where: {
-        user_id: req.session.user_id,
-        timeslot_id: req.params.id
-      },
-    });
-    if (existingBooked) {
-      res.status(400).json({
-        "message": "You are already signed up for this class!"
+    console.log(req.session.user_id);
+    if (req.session.user_id) {
+      const timeslotData = await Timeslot.findByPk(req.params.id);
+      if (!timeslotData) {
+        res
+          .status(404)
+          .json({
+            message: "Timeslot doesn't exist"
+          });
+        return;
+      }
+      const existingBooked = await Booked.findOne({
+        where: {
+          user_id: req.session.user_id,
+          timeslot_id: req.params.id
+        },
       });
-      return;
+      if (existingBooked) {
+        res.status(400).json({
+          "message": "You are already signed up for this class!"
+        });
+        return;
+      }
+      const newBooked = await Booked.create({
+        timeslot_id: parseInt(req.params.id),
+        //   Change to req.session.user_id
+        user_id: req.session.user_id,
+      });
+      res.status(200).json(newBooked);
+    }else {
+      res.status(401).json({"message":"Please log in!"});
     }
-    const newBooked = await Booked.create({
-      timeslot_id: parseInt(req.params.id),
-      //   Change to req.session.user_id
-      user_id: req.session.user_id,
-    });
-    res.status(200).json(newBooked);
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
