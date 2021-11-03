@@ -86,32 +86,7 @@ router.post('/logout', (req, res) => {
   }
 });
 
-router.get('/user-timeslot/', withAuth, async (req, res) => {
-  try { //for testing add req.params.id for functioning add req.session.user_id
-    const userData = await User.findByPk(req.session.user_id, {
 
-      include: [{
-        model: Timeslot,
-        through: Booked,
-        as: 'booked_timeslots',
-        include: [{
-          model: Activity
-        }]
-      }]
-    });
-
-    if (!userData) {
-      res.status(404).json({
-        message: 'No reader found with that id!'
-      });
-      return;
-    }
-
-    res.status(200).json(userData.booked_timeslots);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 router.put('/forgotpassword', async (req, res) => {
   try {
