@@ -49,17 +49,17 @@ router.get('/signup', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
-  const bookedData = await Booked.findAll({
-    where:{
-      user_id: req.session.user_id
-    },
-    include: 
-      [
-        {
-          model: Timeslot
-        }
-      ]
-  });
+  // const bookedData = await Booked.findAll({
+  //   where:{
+  //     user_id: req.session.user_id
+  //   },
+  //   include: 
+  //     [
+  //       {
+  //         model: Timeslot
+  //       }
+  //     ]
+  // });
   // serialize bookedData
   res.render('profile', {
     // send serialized bookedData to handlebar,

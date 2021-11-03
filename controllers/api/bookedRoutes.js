@@ -15,7 +15,7 @@ router.post('/:id',  async (req, res) => {
           const newBooked = await Booked.create({
             timeslot_id: req.params.id,
           //   Change to req.session.user_id
-            user_id: req.body.user_id,
+            user_id: req.session.user_id,
           });
           res.status(200).json(newBooked);
         } catch (err) {

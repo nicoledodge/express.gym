@@ -13,7 +13,7 @@ $(document).ready(function () {
 
 });
 
-$.backstretch("/images/img.jpg");
+// $.backstretch("/images/img.jpg");
 
 // const datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value
 // $.fn.bootstrapDP = datepicker;
@@ -24,16 +24,16 @@ async function timeslotHandler(event) {
     const timeId = event.target.getAttribute('data-id');
     console.log(timeId);
 
-    // const response = await fetch(`/api/booked/${timeId}`, {
-    //     method: 'POST',
-    //     body: JSON.stringify({timeslot_id: timeId}),
-    //     headers: {'Content-Type': 'application/json'}
-    // });
-    // if(response.ok) {
-    //     document.location.replace('/profile');
-    // }else{
-    //     alert(response.statusText);
-    // }
+    const response = await fetch(`/api/booked/${timeId}`, {
+        method: 'POST',
+        body: JSON.stringify({timeslot_id: timeId}),
+        headers: {'Content-Type': 'application/json'}
+    });
+    if(response.ok) {
+        document.location.replace('/profile');
+    }else{
+        alert(response.statusText);
+    }
 }
 
 const timeslots = document.querySelectorAll('.cell');
