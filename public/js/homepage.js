@@ -23,7 +23,7 @@ async function timeslotHandler(event) {
     event.preventDefault();
     // time should represent the timeslot id
     const timeId = event.target.getAttribute('data-id');
-    // console.log(timeId);
+    console.log(timeId);
 
     const response = await fetch(`/api/timeslot/${timeId}`, {
         method: 'POST',
@@ -34,13 +34,15 @@ async function timeslotHandler(event) {
             'Content-Type': 'application/json'
         }
     });
-    const message = await response.json();
+    console.log(response);
     if (response.ok) {
-        document.location.replace('/profile');
-    } else {
-        
-        // console.log(message);
+        document.location.replace('/');
+    } else if (response.status == 400) {
+        const message = await response.json();
+        console.log(message);
         alert(message.message);
+    }else{
+        alert(response.statusText);
     }
 }
 
