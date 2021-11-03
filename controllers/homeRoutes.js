@@ -5,7 +5,10 @@ const {
   Booked,
   User
 } = require('../models');
-const moment = require('moment')
+
+router.get('/home/:date', async (req, res)=> {
+  
+});
 
 router.get('/', async (req, res) => {
   try {
