@@ -25,7 +25,7 @@ async function timeslotHandler(event) {
     const timeId = event.target.getAttribute('data-id');
     // console.log(timeId);
 
-    const response = await fetch(`/api/booked/${timeId}`, {
+    const response = await fetch(`/api/timeslot/${timeId}`, {
         method: 'POST',
         body: JSON.stringify({
             timeslot_id: timeId
