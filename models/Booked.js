@@ -15,6 +15,7 @@ Booked.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'user',
         key: 'id',
@@ -23,6 +24,7 @@ Booked.init(
     },
     timeslot_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'timeslot',
         key: 'id',
