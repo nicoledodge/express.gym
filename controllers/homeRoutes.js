@@ -52,21 +52,27 @@ router.get('/signup', async (req, res) => {
 router.get('/profile', async (req, res) => {
 
   try {
-    const bookedData = await Booked.findAll({
-      attributes: {exclude: ['password']},
-      where: {
-        user_id: req.session.user_id
-      },
-      include:
-          [
-            {
-              model: Timeslot
-            }
-          ]
+    const userData = await User.findByPk(req.session.user_id, {
+
+      include: [{
+        model: Timeslot,
+        through: Booked,
+        as: 'booked_timeslots',
+        include: [{
+          model: Activity
+        }]
+      }]
     });
-    const booked = bookedData.map((project) => project.get({plain: true}));
+    const user = await userData.get({plain:true});
+    console.log(user.booked_timeslots[0].activity);
+    if (!userData) {
+      res.status(404).json({
+        message: 'No reader found with that id!'
+      });
+      return;
+    }
     // serialize bookedData
-    res.render('profile', {booked,
+    res.render('profile', {user,
       logged_in: req.session.logged_in,
       user_id: req.session.user_id
     });
