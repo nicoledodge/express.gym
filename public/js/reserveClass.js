@@ -35,6 +35,7 @@ async function timeslotHandler(event) {
 } 
 
 
+
 const timeslots = document.querySelectorAll('.cell');
 console.log(timeslots);
 

@@ -3,38 +3,34 @@ const {
   Activity,
   Timeslot
 } = require('../models');
+const moment = require('moment')
 
 router.get('/', async (req, res) => {
   try {
     const activityData = await Activity.findAll({
       include: [{
         model: Timeslot,
-        // as: 'timeslot'
+
       }]
     });
-    // const timeslotData = await Timeslot.findAll({
-    //   where: {
-    //     activity_id: activityData[0].id
-    //   }
-    // });
-    // const timeslots = timeslotData.map((timeslot) => timeslot.get({plain:true}));
+
     const activities = activityData.map((activity) => activity.get({
       plain: true
     }));
-    console.log('activities-----------------------------------------------------------------------', activities);
-    // for(let i = 0; i<activities.length; i++) {
-    //   console.log('for loop firing');
-    //   for(let j = 0; i<activities[i].timeslots.length; j++) {
-    //     timeslots.push(activities[i].timeslots[j]);
+    // console.log('activities-----------------------------------------------------------------------', activities[0].timeslots);
+    // const activities = activity.map((item) => {
+    //   for(let i = 0; i<item.timeslots.length; i++){
+    //     console.log("MOMENT FORMATTED TIME===================================================", moment(item.timeslots[i].time, 'HH:mm:ss').format('h:mm A')); 
     //   }
-    // }
-    // console.log(timeslots);
+    //   return item
+    // });
+
     res.render('homepage', {
       activities,
       logged_in: req.session.logged_in,
       user_id: req.session.user_id
     });
-    // res.status(200).json(activityData);
+
   } catch (err) {
     res.status(500).json(err);
   }
