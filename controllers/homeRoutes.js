@@ -44,6 +44,12 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/login', async (req, res) => {
+  // If the user is already logged in, redirect to the homepage
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+  // Otherwise, render the 'login' template
   res.render('login');
 });
 
@@ -52,24 +58,31 @@ router.get('/signup', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
-  // const bookedData = await Booked.findAll({
-  //   where:{
-  //     user_id: req.session.user_id
-  //   },
-  //   include: 
-  //     [
-  //       {
-  //         model: Timeslot
-  //       }
-  //     ]
-  // });
-  // serialize bookedData
-  res.render('profile', {
-    // send serialized bookedData to handlebar,
-    logged_in: req.session.logged_in,
-    user_id: req.session.user_id
-  });
+  try {
+    const bookedData = await Booked.findAll({
+      attributes: {exclude: ['password']},
+      where: {
+        user_id: req.session.user_id
+      },
+      include:
+          [
+            {
+              model: Timeslot
+            }
+          ]
+    });
+    const booked = bookedData.map((project) => project.get({plain: true}));
+    // serialize bookedData
+    res.render('profile', {booked,
+      logged_in: req.session.logged_in,
+      user_id: req.session.user_id
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
+// send serialized bookedData to handlebar,
 
 router.get('/amenities', async (req, res) => {
   res.render('amenities', {

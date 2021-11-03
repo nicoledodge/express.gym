@@ -2,12 +2,12 @@
   <div class="card-header">
     Classes registered
   </div>
-  {{#each classes as |class|}}
+  {{#each timeslots as |timeslot|}}
   <div class="card-body">
     {{!-- class names go here --}}
-    <h5 class="card-title">activitity goes here</h5>
+    <h5 class="card-title">{{timeslot.activity_id}}</h5>
     {{!-- class time goes here --}}
-    <p class="card-text">instructor goes here</p>
+    <p class="card-text">{{timeslot.time}}</p>
     <p class="card-text">timeslot goes here</p>
   </div>
   {{/each}}
