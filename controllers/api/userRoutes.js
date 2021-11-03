@@ -72,7 +72,6 @@ router.post('/login', async (req, res) => {
   router.get('/bookings/:id', async (req, res) => {
     try {//for testing add req.params.id for functioning add req.session.user_id
       const userData = await User.findByPk(req.params.id, {
-        
         include: [{ model: Timeslot, through: Booked, as: 'booked_timeslots', include: [{model: Activity}] } ]
       });
   
@@ -81,7 +80,7 @@ router.post('/login', async (req, res) => {
         return;
       }
   
-      res.status(200).json(userData.booked_timeslots);
+      res.status(200).json(userData);
     } catch (err) {
       res.status(500).json(err);
     }

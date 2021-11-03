@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const withAuth = require('../utils/auth');
 const {
   Activity,
   Timeslot,
@@ -49,13 +50,13 @@ router.get('/signup', async (req, res) => {
   res.render('signup');
 });
 
-router.get('/profile', async (req, res) => {
+router.get('/profile/:id',  async (req, res) => {
 
   try {
     const bookedData = await Booked.findAll({
       attributes: {exclude: ['password']},
       where: {
-        user_id: req.session.user_id
+        user_id: req.params.user_id
       },
       include:
           [
@@ -67,8 +68,8 @@ router.get('/profile', async (req, res) => {
     const booked = bookedData.map((project) => project.get({plain: true}));
     // serialize bookedData
     res.render('profile', {booked,
-      logged_in: req.session.logged_in,
-      user_id: req.session.user_id
+      logged_in: req.params.logged_in,
+      user_id: req.params.user_idn
     });
   } catch (err) {
     console.log(err);
