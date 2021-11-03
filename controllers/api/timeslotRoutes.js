@@ -72,18 +72,26 @@ router.post('/:id', async (req, res) => {
     const timeslotData = await Timeslot.findByPk(req.params.id);
     if (!timeslotData) {
       res
-        .status(400)
+        .status(404)
         .json({
           message: "Timeslot doesn't exist"
         });
       return;
     }
-    const existingBooked = await Booked.findOne({where: {user_id: req.session.user_id}});
-    if(existingBooked){
-      res.status(400).json({"message":"You are already signed up for this class!"});
+    const existingBooked = await Booked.findOne({
+      where: {
+        user_id: req.session.user_id,
+        timeslot_id: req.params.id
+      },
+    });
+    if (existingBooked) {
+      res.status(400).json({
+        "message": "You are already signed up for this class!"
+      });
+      return;
     }
     const newBooked = await Booked.create({
-      timeslot_id: req.params.id,
+      timeslot_id: parseInt(req.params.id),
       //   Change to req.session.user_id
       user_id: req.session.user_id,
     });
