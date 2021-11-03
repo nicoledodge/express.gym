@@ -20,7 +20,10 @@ async function timeslotHandler(event) {
         const message = await response.json();
         console.log(message);
         alert(message.message);
-    }else if(response.status==401){
+    }else if(response.status==418) {
+        alert(response.statusText);
+    }
+    else if(response.status==401){
         document.location.replace('/login');
     }
 }

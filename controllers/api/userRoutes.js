@@ -1,9 +1,6 @@
 const router = require('express').Router();
 const {
-  User,
-  Timeslot,
-  Booked,
-  Activity
+  User
 } = require('../../models');
 const bcrypt = require('bcrypt');
 const withAuth = require('../../utils/auth');
@@ -39,7 +36,6 @@ router.post('/login', async (req, res) => {
         email: req.body.email
       }
     });
-    console.log();
     if (!userData) {
       res
         .status(400)
@@ -50,7 +46,6 @@ router.post('/login', async (req, res) => {
     }
 
     const validPassword = await userData.checkPassword(req.body.password);
-    // console.log(validPassword);
     if (!validPassword) {
       res
         .status(400)
@@ -71,7 +66,7 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
-    console.log("catch firing");
+    console.log(err);
     res.status(400).json(err);
   }
 });
@@ -85,8 +80,6 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
-
-
 
 router.put('/forgotpassword', async (req, res) => {
   try {
@@ -121,22 +114,6 @@ router.put('/forgotpassword', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-// #TEST CODE for upgrading users
-
-// router.put('/upgrade/:id', async (req, res) => {
-//   // update a tag's name by its `id` value
-//   try {
-//     const userData = await User.update({is_VIP : req.body.is_VIP}, {
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-//     res.status(200).json(userData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 router.put('/upgrade', withAuth, async (req, res) => {
   try {

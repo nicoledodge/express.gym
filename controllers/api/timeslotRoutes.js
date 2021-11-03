@@ -1,75 +1,54 @@
 const router = require('express').Router();
 const {
-  User,
   Activity,
   Timeslot,
   Booked
 } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
-  try {
-    const newTimeslot = await Timeslot.create(req.body);
+// FUTURE DEVELOPMENT FOR INSTRUCTOR THINGS
 
-    if (!newTimeslot) {
-      res
-        .status(400)
-        .json({
-          message: 'Incorrect email or password, please try again'
-        });
-      return;
-    }
+// router.post('/', withAuth, async (req, res) => {
+//   try {
+//     const newTimeslot = await Timeslot.create(req.body);
 
-    const validPassword = await userData.checkPassword(req.body.password);
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({
-          message: 'Incorrect email or password, please try again'
-        });
-      return;
-    }
+//     if (!newTimeslot) {
+//       res
+//         .status(400)
+//         .json({
+//           message: 'Incorrect email or password, please try again'
+//         });
+//       return;
+//     }
 
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+//     const validPassword = await userData.checkPassword(req.body.password);
+//     if (!validPassword) {
+//       res
+//         .status(400)
+//         .json({
+//           message: 'Incorrect email or password, please try again'
+//         });
+//       return;
+//     }
 
-      res.status(200).json({
-        user: userData,
-        message: 'You are now logged in!'
-      });
-    });
+//     req.session.save(() => {
+//       req.session.user_id = userData.id;
+//       req.session.logged_in = true;
 
-  } catch (err) {
-    console.log("catch firing");
-    res.status(400).json(err);
-  }
-});
+//       res.status(200).json({
+//         user: userData,
+//         message: 'You are now logged in!'
+//       });
+//     });
 
-router.get('/', async (req, res) => {
-  try {
-    const timeslotData = await Timeslot.findAll({
-      include: [{
-        model: Activity
-      }]
-    });
-
-    if (!timeslotData) {
-      res.status(404).json({
-        message: 'No timeslot found with that id!'
-      });
-      return;
-    }
-
-    res.status(200).json(timeslotData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//   } catch (err) {
+//     console.log("catch firing");
+//     res.status(400).json(err);
+//   }
+// });
 
 router.post('/:id', withAuth, async (req, res) => {
   try {
-    console.log(req.session.user_id);
     if (req.session.user_id) {
       const timeslotData = await Timeslot.findByPk(req.params.id);
       if (!timeslotData) {
@@ -80,6 +59,7 @@ router.post('/:id', withAuth, async (req, res) => {
           });
         return;
       }
+      const timeslot = timeslotData.get({plain:true});
       const existingBooked = await Booked.findOne({
         where: {
           user_id: req.session.user_id,
@@ -94,10 +74,15 @@ router.post('/:id', withAuth, async (req, res) => {
       }
       const newBooked = await Booked.create({
         timeslot_id: parseInt(req.params.id),
-        //   Change to req.session.user_id
         user_id: req.session.user_id,
       });
-      res.status(200).json(newBooked);
+      if(timeslot.capacity > 0) {
+        await Timeslot.increment({capacity: -1}, { where: { id: req.params.id } })
+        res.status(200).json(newBooked);
+      }else{
+        res.status(418).json();
+      }
+      
     }else {
       res.status(401).json({"message":"Please log in!"});
     }
@@ -107,6 +92,9 @@ router.post('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// FUTURE DEVELOPMENT FOR INSTRUCTOR THINGS
+
 // router.put('/timeslot/:id', async (req, res) => {
 //     // Calls the update method on the Book model
 //   Timeslot.update(
