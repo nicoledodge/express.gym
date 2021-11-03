@@ -15,7 +15,9 @@ Booked.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
-      allwoNull: false,
+
+      allowNull: false,
+
       references: {
         model: 'user',
         key: 'id',
