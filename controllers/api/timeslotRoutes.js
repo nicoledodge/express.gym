@@ -1,15 +1,22 @@
 const router = require('express').Router();
-const { User, Activity, Timeslot } = require('../../models');
+const {
+  User,
+  Activity,
+  Timeslot,
+  Booked
+} = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
   try {
     const newTimeslot = await Timeslot.create(req.body);
-    
+
     if (!newTimeslot) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({
+          message: 'Incorrect email or password, please try again'
+        });
       return;
     }
 
@@ -17,15 +24,20 @@ router.post('/', withAuth, async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({
+          message: 'Incorrect email or password, please try again'
+        });
       return;
     }
 
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
-      res.status(200).json({ user: userData, message: 'You are now logged in!' });
+
+      res.status(200).json({
+        user: userData,
+        message: 'You are now logged in!'
+      });
     });
 
   } catch (err) {
@@ -34,14 +46,18 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/',  async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const timeslotData = await Timeslot.findAll({
-      include:  [{ model: Activity} ]
+      include: [{
+        model: Activity
+      }]
     });
 
     if (!timeslotData) {
-      res.status(404).json({ message: 'No timeslot found with that id!' });
+      res.status(404).json({
+        message: 'No timeslot found with that id!'
+      });
       return;
     }
 
@@ -51,6 +67,28 @@ router.get('/',  async (req, res) => {
   }
 });
 
+router.post('/:id', async (req, res) => {
+  try {
+    const timeslotData = await Timeslot.findByPk(req.params.id);
+    if (!timeslotData) {
+      res
+        .status(400)
+        .json({
+          message: "Timeslot doesn't exist"
+        });
+      return;
+    }
+    const newBooked = await Booked.create({
+      timeslot_id: req.params.id,
+      //   Change to req.session.user_id
+      user_id: req.session.user_id,
+    });
+    res.status(200).json(newBooked);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 // router.put('/timeslot/:id', async (req, res) => {
 //     // Calls the update method on the Book model
 //   Timeslot.update(
