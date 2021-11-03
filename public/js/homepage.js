@@ -23,9 +23,9 @@ async function timeslotHandler(event) {
     event.preventDefault();
     // time should represent the timeslot id
     const timeId = event.target.getAttribute('data-id');
-    console.log(timeId);
+    // console.log(timeId);
 
-    const response = await fetch(`/api/booked/${timeId}`, {
+    const response = await fetch(`/api/timeslot/${timeId}`, {
         method: 'POST',
         body: JSON.stringify({
             timeslot_id: timeId
@@ -34,15 +34,18 @@ async function timeslotHandler(event) {
             'Content-Type': 'application/json'
         }
     });
+    const message = await response.json();
     if (response.ok) {
         document.location.replace('/profile');
     } else {
-        alert(response.statusText);
+        
+        // console.log(message);
+        alert(message.message);
     }
 }
 
 const timeslots = document.querySelectorAll('.cell');
-console.log(timeslots);
+// console.log(timeslots);
 
 for (let i = 0; i < timeslots.length; i++) {
     timeslots[i].addEventListener('click', timeslotHandler);
