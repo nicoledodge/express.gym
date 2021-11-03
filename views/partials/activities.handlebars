@@ -1,247 +1,30 @@
-<div class="text-center m-4">
-    <h2>Sign up for a FREE class today!</h2>
-</div>
-<div class="row justify-content-center mx-0">
-    <div class="col-lg-10">
-        <div class="card border-0">
-            <form autocomplete="off">
-                <div class="card-header bg-dark">
-                    <div class="mx-0 mb-0 justify-content-start px-1">
-                        <input type="text" id="dp1" class="datepicker" data-provide="datepicker" placeholder="Pick Date"
-                               name="date"/>
-                        <span class="fa fa-calendar"></span>
+
+<!--                   <--START OF ROW-->
+<tr data-id='{{id}}'>
+    <th scope="row">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{name}}">
+            {{name}}
+        </button>
+        <div class="modal fade" id="{{name}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">{{name}}</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{description}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                        </button>
                     </div>
                 </div>
-                <!--                separation between header and body(table)-->
-
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Activity</th>
-                        <th scope="col">Instructor</th>
-                        <th colspan="2">Times</th>
-                        <!--                            <th scope="col">Handle</th>-->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!--                   <--START OF ROW-->
-                    <tr>
-                        <th scope="row">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
-                                YOGA
-                            </button>
-                            <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="ModalLabel">yoga</h5>
-                                            <button type="button" class="btn-close" data-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            stretch your less bendy places
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </th>
-                        <td>Christian Henry</td>
-                        <td colspan="2">
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">9:45AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:00AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:30AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:45AM</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!--END OF ROW-->
-                    <!--                   <--START OF ROW-->
-                    <tr>
-                        <th scope="row">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
-                                DODGEBALL
-                            </button>
-                            <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="ModalLabel">dodgeball</h5>
-                                            <button type="button" class="btn-close" data-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            hit people with balls
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </th>
-                        <td>Nikki Deez Nutzz</td>
-                        <td colspan="2">
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">9:45AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:00AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:30AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:45AM</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!--END OF ROW-->
-                    <!--                   <--START OF ROW-->
-                    <tr>
-                        <th scope="row">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
-                                PERSONAL TRAINER
-                            </button>
-                            <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="ModalLabel">personal trainer</h5>
-                                            <button type="button" class="btn-close" data-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          info
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </th>
-                        <td>Phillip Welch</td>
-                        <td colspan="2">
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">9:45AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:00AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:30AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:45AM</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!--END OF ROW-->
-                    <!--                   <--START OF ROW-->
-                    <tr>
-                        <th scope="row">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
-                                PILATES
-                            </button>
-                            <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="ModalLabel">pilates</h5>
-                                            <button type="button" class="btn-close" data-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                           info
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </th>
-                        <td>Ethan Cho</td>
-                        <td colspan="2">
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">9:45AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:00AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:30AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:45AM</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!--END OF ROW-->
-                    <!--                   <--START OF ROW-->
-                    <tr>
-                        <th scope="row">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
-                                    CROSSFIT
-                            </button>
-                            <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="ModalLabel">crossfit</h5>
-                                            <button type="button" class="btn-close" data-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            info
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </th>
-                        <td>Alex Gonzalez</td>
-                        <td colspan="2">
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">9:45AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:00AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:30AM</div>
-                            </div>
-                            <div class="col-md-3 col-4 my-1 px-2">
-                                <div class="cell py-1">10:45AM</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!--END OF ROW-->
-                    </tbody>
-                </table>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
+    </th>
+    {{#each timeslots as |timeslot|}}
+    {{> timeslots}}
+    {{/each}}
+</tr>
+
