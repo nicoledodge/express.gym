@@ -10,6 +10,11 @@ async function signupHandler(event) {
     const password = document.querySelector('#password').value.trim();
     const zipcode = document.querySelector('#zipcode').value.trim();
     const isVip = document.querySelector('#isVip:checked') ? true : false;
+    const password2 = document.querySelector('#password2').value.trim();
+    if(password == password2) {
+        alert("passwords do not match!");
+        return;
+    }
     // date_of_birth = moment(date_of_birth).format('MM DD YYYY')
     console.log(date_of_birth, first_name, last_name, email, phone_number, password, zipcode, isVip);
     if ((password.length >= 8) && first_name && last_name && email && phone_number && date_of_birth && zipcode) {
