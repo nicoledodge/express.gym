@@ -43,5 +43,9 @@
         </div>
     </div>
 </div>
-
+{{#if logged_in}}
+<script src="/js/classappt.js"></script>
+{{else}}
+<script src="/js/notloggedin.js"></script>
+{{/if}}
 <script src="/js/homepage.js"></script>
