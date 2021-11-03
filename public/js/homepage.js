@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    // $.backstretch("/images/img.jpg");
 
     $('.datepicker').datepicker({
         format: 'dd-mm-yyyy',
@@ -13,7 +14,7 @@ $(document).ready(function () {
 
 });
 
-// $.backstretch("/images/img.jpg");
+
 
 // const datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value
 // $.fn.bootstrapDP = datepicker;
@@ -26,12 +27,16 @@ async function timeslotHandler(event) {
 
     const response = await fetch(`/api/booked/${timeId}`, {
         method: 'POST',
-        body: JSON.stringify({timeslot_id: timeId}),
-        headers: {'Content-Type': 'application/json'}
+        body: JSON.stringify({
+            timeslot_id: timeId
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     });
-    if(response.ok) {
+    if (response.ok) {
         document.location.replace('/profile');
-    }else{
+    } else {
         alert(response.statusText);
     }
 }

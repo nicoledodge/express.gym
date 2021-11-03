@@ -19,6 +19,7 @@ async function signupHandler(event) {
             headers: {'Content-Type': 'application/json'}
         });
         if(response.ok) {
+            swal("You've signed up!");
             document.location.replace('/');
         }else{
             alert(response.statusText);
