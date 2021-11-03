@@ -7,7 +7,7 @@ const {
 } = require('../models');
 
 router.get('/home/:date', async (req, res)=> {
-  
+
 });
 
 router.get('/', async (req, res) => {
@@ -15,20 +15,12 @@ router.get('/', async (req, res) => {
     const activityData = await Activity.findAll({
       include: [{
         model: Timeslot,
-
       }]
     });
 
     const activities = activityData.map((activity) => activity.get({
       plain: true
     }));
-    // console.log('activities-----------------------------------------------------------------------', activities[0].timeslots);
-    // const activities = activity.map((item) => {
-    //   for(let i = 0; i<item.timeslots.length; i++){
-    //     console.log("MOMENT FORMATTED TIME===================================================", moment(item.timeslots[i].time, 'HH:mm:ss').format('h:mm A')); 
-    //   }
-    //   return item
-    // });
 
     res.render('homepage', {
       activities,
@@ -58,6 +50,7 @@ router.get('/signup', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
+
   try {
     const bookedData = await Booked.findAll({
       attributes: {exclude: ['password']},
@@ -81,6 +74,7 @@ router.get('/profile', async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+
 });
 // send serialized bookedData to handlebar,
 
