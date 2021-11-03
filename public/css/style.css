@@ -80,7 +80,10 @@ input:focus {
     border: 1px solid #512DA8;
     outline-width: 0
 }
-
+input.checkbox {
+    width: 25px;
+    height: 25px;
+}
 ::placeholder {
     color: black;
     opacity: 1
