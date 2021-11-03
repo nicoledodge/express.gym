@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    $.backstretch("/images/img.jpg");
-    
+    // $.backstretch("/images/img.jpg");
+
     $('.datepicker').datepicker({
         format: 'dd-mm-yyyy',
         autoclose: true,
