@@ -1,5 +1,3 @@
-// const swal = require('sweetalert');
-
 async function loginHandler(event) {
     event.preventDefault();
     const email = document.querySelector('#email').value.trim();
@@ -14,7 +12,7 @@ async function loginHandler(event) {
         });
         console.log(response.ok);
         if(response.ok) {
-            swal("You're logged in!");
+            await swal("You're logged in!");
             document.location.replace('/');
         }else{
             const message = response.json();

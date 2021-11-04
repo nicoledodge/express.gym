@@ -8,7 +8,6 @@ const {
   Location
 } = require('../models');
 
-
 router.get('/', async (req, res) => {
   try {
     const activityData = await Activity.findAll({
@@ -37,6 +36,13 @@ router.get('/', async (req, res) => {
 
 });
 
+router.get('/locations', async (req, res) => {
+  res.render('locations', {
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id
+  })
+})
+
 router.get('/login', async (req, res) => {
 
   if (req.session.loggedIn) {
@@ -52,7 +58,10 @@ router.get('/signup', async (req, res) => {
 });
 
 router.get('/vip', async (req, res) => {
-  res.render('vip');
+  res.render('vip', {
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id
+  });
 });
 
 router.get('/profile', withAuth, async (req, res) => {
@@ -89,7 +98,7 @@ router.get('/profile', withAuth, async (req, res) => {
 });
 
 router.get('/forgotpassword', async(req, res) => {
-  res.render('forgotpassword',{
+  res.render('reset',{
     logged_in: req.session.logged_in,
     user_id: req.session.user_id
   });

@@ -26,7 +26,6 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-
   await Location.bulkCreate(locationData)
 
   process.exit(0);
