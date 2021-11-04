@@ -5,7 +5,7 @@ const Booked = require('./Booked')
 
 
 User.belongsToMany(Timeslot, {
-      foreignKey: 'timeslot_id',
+      foreignKey: 'user_id',
       through: {
         model: Booked,
         unique: false
@@ -22,7 +22,7 @@ Timeslot.belongsTo(Activity,{
 });
 
 Timeslot.belongsToMany(User,{
-    foreignKey: 'user_id',
+    foreignKey: 'timeslot_id',
     through: {
       model: Booked,
       unique: false
