@@ -89,7 +89,7 @@ router.put('/forgotpassword', async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 10);
     const userData = await User.update(
-      req.body.password, {
+      req.body, {
         where: {
           first_name: req.body.first_name,
           last_name: req.body.last_name,
@@ -99,29 +99,29 @@ router.put('/forgotpassword', async (req, res) => {
           zipcode: req.body.zipcode,
         }
       });
-    // req.session.save(() => {
-    //   req.session.user_id = userData.id;
-    //   req.session.logged_in = true;
-    if (!userData) {
-      res.status(404).json({
-        "message": "data inputted does not match our records!"
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+  
+        res.status(200).json({
+          user: userData,
+          message: 'You are now logged in!'
+        });
       });
-
-      res.status(200).json({
-        user: userData,
-        message: 'Password Reset!'
-      });
+      if (!userData) {
+        res.status(404).json({
+          "message": "data inputted does not match our records!"
+        });
+      }
+      res.status(200).json(userData);
+    } catch (err) {
+      res.status(500).json(err);
     }
-    res.status(200).json(userData.get(fo));
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+  });
 
 router.put('/upgrade', withAuth, async (req, res) => {
   try {
-    // req.body.password = await bcrypt.hash(req.body.password, 10);
-    const userData = await User.update({is_VIP
+    const userData = await User.update({ is_VIP: req.body.isVip
     }, {
       where: {
         id: req.session.user_id,
@@ -135,25 +135,23 @@ router.put('/upgrade', withAuth, async (req, res) => {
   }
 });
 
-router.put('/upgrade/:id', async (req, res) => {
-  try {
-    // req.body.password = await bcrypt.hash(req.body.password, 10);
-    is_VIP = req.body.is_VIP
-    const userData = await User.update({is_VIP
-    }, {
-      where: {
-        id: req.params.id,
-        email: req.body.email,
-        // password: req.body.password,
-      },
-    });
-    console.log(userData)
-    res.status(200).json(userData);
-  } catch (err) {
-    console.log(err)
-    res.status(500).json(err);
-  }
-});
-
+// #TESTCODE for the PUT ROUTE
+// router.put('/upgrade/:id', async (req, res) => {
+//   try {
+//     is_VIP = req.body.is_VIP
+//     const userData = await User.update({is_VIP
+//     }, {
+//       where: {
+//         id: req.params.id,
+//         email: req.body.email,
+//       },
+//     });
+//     console.log(userData)
+//     res.status(200).json(userData);
+//   } catch (err) {
+//     console.log(err)
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;
