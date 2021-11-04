@@ -17,7 +17,8 @@ async function loginHandler(event) {
             swal("You're logged in!");
             document.location.replace('/');
         }else{
-            alert(response.statusText);
+            const message = response.json();
+            alert(message.message);
         }
     }
 }
