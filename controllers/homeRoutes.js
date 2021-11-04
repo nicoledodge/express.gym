@@ -1,9 +1,11 @@
 const router = require('express').Router();
+const withAuth = require('../utils/auth');
 const {
   Activity,
   Timeslot,
   Booked,
-  User
+  User,
+  Location
 } = require('../models');
 
 
@@ -19,8 +21,12 @@ router.get('/', async (req, res) => {
       plain: true
     }));
 
+    const locationData = await Location.findOne();
+    const location = locationData.get({plain: true});
+
     res.render('homepage', {
       activities,
+      location,
       logged_in: req.session.logged_in,
       user_id: req.session.user_id
     });
@@ -45,7 +51,11 @@ router.get('/signup', async (req, res) => {
   res.render('signup');
 });
 
-router.get('/profile', async (req, res) => {
+router.get('/vip', async (req, res) => {
+  res.render('vip');
+});
+
+router.get('/profile', withAuth, async (req, res) => {
 
   try {
     const userData = await User.findByPk(req.session.user_id, {
