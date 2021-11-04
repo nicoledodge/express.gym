@@ -1,5 +1,3 @@
-// const moment = require('moment');
-
 async function upgradeHandler(event) {
     event.preventDefault()
     const email = document.querySelector('#email').value.trim();

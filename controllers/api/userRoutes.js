@@ -85,7 +85,7 @@ router.post('/logout', (req, res) => {
   }
 });
 
-router.put('/forgotpassword', async (req, res) => {
+router.put('/reset', async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 10);
     const userData = await User.update(
@@ -129,6 +129,9 @@ router.put('/upgrade', withAuth, async (req, res) => {
         // password: req.body.password,
       },
     });
+    if(!userData) {
+      res.status(404).json({message: "No user found!"});
+    }
     res.status(200).json(userData);
   } catch (err) {
     res.status(500).json(err);
