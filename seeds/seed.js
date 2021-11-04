@@ -7,8 +7,6 @@ const timeslotData = require('./timeslotData.json');
 const activityData = require('./activityData.json');
 const locationData = require('./locationData.json');
 
-const timeslotData = require('./timeslotData.json')
-
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -30,12 +28,6 @@ const seedDatabase = async () => {
 
 
   await Location.bulkCreate(locationData)
-
-  await Booked.bulkCreate(bookedData, {
-
-    individualHooks: true,
-    returning: true,
-  });
 
   process.exit(0);
 };
