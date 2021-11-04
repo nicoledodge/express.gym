@@ -36,6 +36,7 @@ Timeslot.init(
         references: {
           model: 'activity',
           key: 'id',
+          unique: false
         },
       }
   },

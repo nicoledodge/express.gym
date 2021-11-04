@@ -6,9 +6,6 @@ const {
   User
 } = require('../models');
 
-router.get('/home/:date', async (req, res)=> {
-
-});
 
 router.get('/', async (req, res) => {
   try {
@@ -31,17 +28,16 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  // Send the rendered Handlebars.js template back as the response
 
 });
 
 router.get('/login', async (req, res) => {
-  // If the user is already logged in, redirect to the homepage
+
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
   }
-  // Otherwise, render the 'login' template
+
   res.render('login');
 });
 
@@ -52,21 +48,26 @@ router.get('/signup', async (req, res) => {
 router.get('/profile', async (req, res) => {
 
   try {
-    const bookedData = await Booked.findAll({
-      attributes: {exclude: ['password']},
-      where: {
-        user_id: req.session.user_id
-      },
-      include:
-          [
-            {
-              model: Timeslot
-            }
-          ]
+    const userData = await User.findByPk(req.session.user_id, {
+      include: [{
+        model: Timeslot,
+        through: Booked,
+        as: 'booked_timeslots',
+        include: [{
+          model: Activity
+        }]
+      }]
     });
-    const booked = bookedData.map((project) => project.get({plain: true}));
-    // serialize bookedData
-    res.render('profile', {booked,
+    const user = await userData.get({plain:true});
+
+    if (!userData) {
+      res.status(404).json({
+        message: 'No user found with that id!'
+      });
+      return;
+    }
+    res.render('profile', {
+      user,
       logged_in: req.session.logged_in,
       user_id: req.session.user_id
     });
@@ -76,7 +77,13 @@ router.get('/profile', async (req, res) => {
   }
 
 });
-// send serialized bookedData to handlebar,
+
+router.get('/forgotpassword', async(req, res) => {
+  res.render('forgotpassword',{
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id
+  });
+});
 
 router.get('/amenities', async (req, res) => {
   res.render('amenities', {

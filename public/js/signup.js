@@ -1,5 +1,7 @@
 // const moment = require('moment');
 
+const { default: swal } = require("sweetalert");
+
 async function signupHandler(event) {
     event.preventDefault()
     const first_name = document.querySelector('#firstName').value.trim();
@@ -11,6 +13,11 @@ async function signupHandler(event) {
     const confirmPassword = document.querySelector('#confirm-password').value.trim();
     const zipcode = document.querySelector('#zipcode').value.trim();
     const isVip = document.querySelector('#isVip:checked') ? true : false;
+    const password2 = document.querySelector('#passwordReenter').value.trim();
+    if(!password == password2) {
+        swal("passwords do not match!");
+        return;
+    }
     // date_of_birth = moment(date_of_birth).format('MM DD YYYY')
     console.log(date_of_birth, first_name, last_name, email, phone_number, password, zipcode, isVip);
     if ((password.length >= 8 && confirmPassword) && first_name && last_name && email && phone_number && date_of_birth && zipcode) {
@@ -23,7 +30,7 @@ async function signupHandler(event) {
             swal("You've signed up!");
             document.location.replace('/');
         }else{
-            alert(response.statusText);
+            window.alert(response.statusText);
         }
     }else {
         alert('Invalid information inputted.');
