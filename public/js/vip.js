@@ -4,7 +4,7 @@ async function upgradeHandler(event) {
     const password = document.querySelector('#password').value.trim();
     const confirmPassword = document.querySelector('#confirm-password').value.trim();
     const isVip = document.querySelector('#isVip:checked') ? true : false;
-    console.log(email, password, confirmPassword,isVip);
+    // console.log(email, password, confirmPassword,isVip);
     if ((password.length >= 8 && password === confirmPassword) && email && isVip) {
         const response = await fetch('/api/users/upgrade', {
             method: 'PUT',
