@@ -67,7 +67,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/:id', async (req, res) => {
+router.post('/:id', withAuth, async (req, res) => {
   try {
     const timeslotData = await Timeslot.findByPk(req.params.id);
     if (!timeslotData) {
