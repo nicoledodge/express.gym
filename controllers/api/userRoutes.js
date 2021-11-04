@@ -121,16 +121,37 @@ router.put('/forgotpassword', async (req, res) => {
 
 router.put('/upgrade', withAuth, async (req, res) => {
   try {
-    const userData = await User.update({ is_VIP: req.body.isVip
-    }, {
-      where: {
-        id: req.session.user_id,
-        email: req.body.email,
-        // password: req.body.password,
-      },
-    });
-    res.status(200).json(userData);
+
+    const thisData = await User.findByPk(req.session.user_id, 
+      {attributes: ['email','password']}
+      )
+      if (!thisData) {
+        res
+          .status(400)
+          .json({
+            message: 'Incorrect email or password, please try again'
+          });
+        return;
+      } 
+      let isValid = await thisData.checkPassword(req.body.password)
+      if (!isValid) {
+        res
+          .status(400)
+          .json({
+            message: 'Incorrect email or password, please try again'
+          });
+        return;
+      }
+      const userData = await User.update({ is_VIP: req.body.isVip
+      }, {
+        where: {
+          id: req.session.user_id,
+          email: req.body.email,
+        },
+      });
+      res.status(200).json(userData);
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
