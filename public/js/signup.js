@@ -6,7 +6,7 @@ async function signupHandler(event) {
     const phone_number = document.querySelector('#phoneNumber').value.trim();
     const date_of_birth = document.querySelector('#dateOfBirth').value.trim();
     const password = document.querySelector('#password').value.trim();
-    const confirmPassword = document.querySelector('#confirm-password').value.trim();
+    const confirmPassword = document.querySelector('#passwordReenter').value.trim();
     const zipcode = document.querySelector('#zipcode').value.trim();
     const isVip = document.querySelector('#isVip:checked') ? true : false;
     const password2 = document.querySelector('#passwordReenter').value.trim();

@@ -99,33 +99,34 @@ router.put('/forgotpassword', async (req, res) => {
           zipcode: req.body.zipcode,
         }
       });
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-
-      res.status(200).json({
-        user: userData,
-        message: 'You are now logged in!'
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+  
+        res.status(200).json({
+          user: userData,
+          message: 'You are now logged in!'
+        });
       });
-    });
-    if (!userData) {
-      res.status(404).json({
-        "message": "data inputted does not match our records!"
-      });
+      if (!userData) {
+        res.status(404).json({
+          "message": "data inputted does not match our records!"
+        });
+      }
+      res.status(200).json(userData);
+    } catch (err) {
+      res.status(500).json(err);
     }
-    res.status(200).json(userData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+  });
 
 router.put('/upgrade', withAuth, async (req, res) => {
   try {
-    const userData = await User.update({
-      is_VIP: req.body.is_VIP
+    const userData = await User.update({ is_VIP: req.body.isVip
     }, {
       where: {
         id: req.session.user_id,
+        email: req.body.email,
+        // password: req.body.password,
       },
     });
     res.status(200).json(userData);
@@ -133,5 +134,24 @@ router.put('/upgrade', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// #TESTCODE for the PUT ROUTE
+// router.put('/upgrade/:id', async (req, res) => {
+//   try {
+//     is_VIP = req.body.is_VIP
+//     const userData = await User.update({is_VIP
+//     }, {
+//       where: {
+//         id: req.params.id,
+//         email: req.body.email,
+//       },
+//     });
+//     console.log(userData)
+//     res.status(200).json(userData);
+//   } catch (err) {
+//     console.log(err)
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;
