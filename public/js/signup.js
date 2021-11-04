@@ -6,6 +6,7 @@ async function signupHandler(event) {
     const phone_number = document.querySelector('#phoneNumber').value.trim();
     const date_of_birth = document.querySelector('#dateOfBirth').value.trim();
     const password = document.querySelector('#password').value.trim();
+    const confirmPassword = document.querySelector('#confirm-password').value.trim();
     const zipcode = document.querySelector('#zipcode').value.trim();
     const isVip = document.querySelector('#isVip:checked') ? true : false;
     const password2 = document.querySelector('#passwordReenter').value.trim();
@@ -15,7 +16,7 @@ async function signupHandler(event) {
     }
 
     console.log(date_of_birth, first_name, last_name, email, phone_number, password, zipcode, isVip);
-    if ((password.length >= 8) && first_name && last_name && email && phone_number && date_of_birth && zipcode) {
+    if ((password.length >= 8 && confirmPassword) && first_name && last_name && email && phone_number && date_of_birth && zipcode) {
         const response = await fetch('/api/users/signup', {
             method: 'POST',
             body: JSON.stringify({first_name, last_name, email, phone_number, date_of_birth, password, zipcode, isVip}),

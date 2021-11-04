@@ -4,6 +4,7 @@ const { User,Timeslot,Activity, Booked } = require('../models');
 const userData = require('./userData.json');
 const timeslotData = require('./timeslotData.json')
 const activityData = require('./activityData.json')
+const bookedData = require('./bookedData.json')
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -19,6 +20,11 @@ const seedDatabase = async () => {
   });
 
   await Timeslot.bulkCreate(timeslotData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  await Booked.bulkCreate(bookedData, {
     individualHooks: true,
     returning: true,
   });
