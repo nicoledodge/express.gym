@@ -120,11 +120,13 @@ router.put('/forgotpassword', async (req, res) => {
 
 router.put('/upgrade', withAuth, async (req, res) => {
   try {
-    const userData = await User.update({
-      is_VIP: req.body.is_VIP
+    // req.body.password = await bcrypt.hash(req.body.password, 10);
+    const userData = await User.update({is_VIP
     }, {
       where: {
         id: req.session.user_id,
+        email: req.body.email,
+        // password: req.body.password,
       },
     });
     res.status(200).json(userData);
@@ -132,5 +134,26 @@ router.put('/upgrade', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.put('/upgrade/:id', async (req, res) => {
+  try {
+    // req.body.password = await bcrypt.hash(req.body.password, 10);
+    is_VIP = req.body.is_VIP
+    const userData = await User.update({is_VIP
+    }, {
+      where: {
+        id: req.params.id,
+        email: req.body.email,
+        // password: req.body.password,
+      },
+    });
+    console.log(userData)
+    res.status(200).json(userData);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;

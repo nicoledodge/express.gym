@@ -51,7 +51,7 @@ router.get('/signup', async (req, res) => {
   res.render('signup');
 });
 
-router.get('/vip', async (req, res) => {
+router.get('/vip', withAuth, async (req, res) => {
   res.render('vip');
 });
 
@@ -89,7 +89,7 @@ router.get('/profile', withAuth, async (req, res) => {
 });
 
 router.get('/forgotpassword', async(req, res) => {
-  res.render('forgotpassword',{
+  res.render('reset',{
     logged_in: req.session.logged_in,
     user_id: req.session.user_id
   });
