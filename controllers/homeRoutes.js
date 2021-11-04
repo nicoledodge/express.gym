@@ -37,11 +37,16 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/locations', async (req, res) => {
+  const locationData = await Location.findAll();
+  const locations = locationData.map((location) => {
+    return location.get({plain:true});
+  });
   res.render('locations', {
+    locations,
     logged_in: req.session.logged_in,
     user_id: req.session.user_id
-  })
-})
+  });
+});
 
 router.get('/login', async (req, res) => {
 
