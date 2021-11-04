@@ -1,4 +1,5 @@
-<div class="row">
+
+<div class="row p-4">
   <div class="card col-6">
     <div class="card-header">
       Classes registered
@@ -13,9 +14,9 @@
     </div>
     {{/each}}
   </div>
-  <div class="card col-6">
+  <div class="card col-sm-12 col-md-6 col-lg-6">
     <div class="card-header">
-      <p>{{user.first_name}} {{user.last_name}}</p>
+      {{user.first_name}} {{user.last_name}}
     </div>
     <div class="card-body">
       {{!-- class names go here --}}

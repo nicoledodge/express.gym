@@ -1,8 +1,26 @@
 [
     {
       "name": "Require-Express",
-      "address": "1234 William Cannon Rd",
+      "address": "1111 William Cannon Rd",
       "phone_number" : "512-EXP-RESS",
-      "email": "Contact@ExpressGym.com"
+      "email": "Require-Express@ExpressGym.com"
+    },
+    {
+      "name": "Node-BulkCreate",
+      "address": "1112 William Cannon Rd",
+      "phone_number" : "512-EXP-RESS",
+      "email": "Node-BulkCreate@ExpressGym.com"
+    },
+    {
+      "name": "mySQL-SOURCE",
+      "address": "1113 William Cannon Rd",
+      "phone_number" : "512-EXP-RESS",
+      "email": "mySQL-SOURCE@ExpressGym.com"
+    },
+    {
+      "name": "JOIN-ExpressGym",
+      "address": "1114 William Cannon Rd",
+      "phone_number" : "512-EXP-RESS",
+      "email": "JOIN-ExpressGym@ExpressGym.com"
     }
   ]

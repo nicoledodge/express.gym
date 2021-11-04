@@ -8,7 +8,6 @@ const {
   Location
 } = require('../models');
 
-
 router.get('/', async (req, res) => {
   try {
     const activityData = await Activity.findAll({
@@ -37,6 +36,13 @@ router.get('/', async (req, res) => {
 
 });
 
+router.get('/locations', async (req, res) => {
+  res.render('locations', {
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id
+  })
+})
+
 router.get('/login', async (req, res) => {
 
   if (req.session.loggedIn) {
@@ -58,6 +64,23 @@ router.get('/vip', async (req, res) => {
     });
     return;
   });
+
+router.get('/locations', withAuth, async (req, res) => {
+  try {
+    const locationData = await Location.findAll();
+
+    const locations = locationData.map((location) => location.get({
+      plain: true
+    }));
+
+    res.render('locations', {
+      locations
+    });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/profile', withAuth, async (req, res) => {
 

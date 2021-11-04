@@ -1,0 +1,17 @@
+<div class="flex-row justify-content-center m-4 p-4">
+  <div class="card col-lg-8 col-md-10 col-sm-12 p-0">
+    <div class="card-header fs-1">
+      Locations
+    </div>
+    {{#each locations as |location|}}
+    <div class="card-body">
+      {{!-- class names go here --}}
+      <h5 class="card-title fs-2">{{location.name}}</h5>
+      {{!-- class time goes here --}}
+      <p class="card-text fs-4">{{location.address}}</p>
+      <p class="card-text fs-4">{{location.phone_number}}</p>
+      <p class="card-text fs-4">{{location.email}}</p>
+    </div>
+    {{/each}}
+  </div>
+</div>

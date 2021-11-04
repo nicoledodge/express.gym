@@ -49,6 +49,10 @@ a.nav-link {
 }
 .card {
     box-shadow: 0px 4px 8px 0px #435f56;
+
+    padding-left: 0px;
+    padding-right: 0px;
+
 }
 .card-footer {
     display: flex;
