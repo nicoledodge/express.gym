@@ -1,6 +1,6 @@
 // const moment = require('moment');
 
-const { default: swal } = require("sweetalert");
+// const { default: swal } = require("sweetalert");
 
 async function signupHandler(event) {
     event.preventDefault()

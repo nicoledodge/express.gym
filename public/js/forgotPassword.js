@@ -1,4 +1,4 @@
-const { default: swal } = require("sweetalert");
+// const { default: swal } = require("sweetalert");
 
 async function forgotPassword(event) {
     event.preventDefault()
@@ -37,7 +37,7 @@ async function forgotPassword(event) {
             document.location.replace('/');
         } else {
             const message = res.json();
-            swal(message.message);
+            // swal(message.message);
         }
 
     }

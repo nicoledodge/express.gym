@@ -16,5 +16,14 @@
     "date_of_birth": "02-25-1957",
     "phone_number" : "1118111134",
     "zipcode" : "79555"
+  },
+  {
+    "first_name": "Phill",
+    "last_name": "W.",
+    "email": "Phill@pmail.com",
+    "password": "Phill1234",
+    "date_of_birth": "10-10-1010",
+    "phone_number" : "1234567890",
+    "zipcode" : "12345"
   }
 ]

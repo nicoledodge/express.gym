@@ -85,7 +85,7 @@ router.put('/forgotpassword', async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 10);
     const userData = await User.update(
-      req.body, {
+      req.body.password, {
         where: {
           first_name: req.body.first_name,
           last_name: req.body.last_name,
@@ -95,21 +95,20 @@ router.put('/forgotpassword', async (req, res) => {
           zipcode: req.body.zipcode,
         }
       });
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-
-      res.status(200).json({
-        user: userData,
-        message: 'You are now logged in!'
-      });
-    });
+    // req.session.save(() => {
+    //   req.session.user_id = userData.id;
+    //   req.session.logged_in = true;
     if (!userData) {
       res.status(404).json({
         "message": "data inputted does not match our records!"
       });
+
+      res.status(200).json({
+        user: userData,
+        message: 'Password Reset!'
+      });
     }
-    res.status(200).json(userData);
+    res.status(200).json(userData.get(fo));
   } catch (err) {
     res.status(500).json(err);
   }
