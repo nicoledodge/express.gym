@@ -21,28 +21,59 @@ Deployment Date: 10/31/2021  *spooky*
 4. [Contributing](#Contributing)
 5. [Tests](#Tests)
 7. [Project Restraints](#project-restraints)
-8. [APIs Used](#apis-used)
+8. [Technologies Used](#technologies-used)
 9. [Future Development](#future-development)
 ## Description
-
+Backend for a fitness app using Express and Node.js
 ## Installation
+Clone down the repo:
+```
+git clone git@github.com:nicoledodge/express.gym.git
+```
+Install dependencies:
+```
+$ npm install
+```
+Run the seeds data:
+```
+$ npm run seed
+```
+Start server at http://localhost:3001/:
+```
+$ nodemon server.js
+```
 
 ## User Story
 
 ```md
-GIVEN 
-WHEN
-THEN
+AS a user with a healthy lifestyle and interest for working out,
+I want a gym that will offer free classes and track my membership profile
+SO that I can keep my gym details all in one place
 ```
 
 # Contributors:
-Nicole Dodge: https://github.com/nicoledodge
+Nicole Dodge: https://github.com/nicoledodge  
+Ethan Cho: https://github.com/echo1826  
+Phillip Wench: https://github.com/PAW6063  
+Alexis Gonzalez: https://github.com/AlexisGonzalez07
+
 
 ## Tests
 
 ## Project Constraints
 
-## APIs Used
+## Technologies Used
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [nodemon](https://nodemon.io/)
+- [Sequelize](http://docs.sequelizejs.com/)
+- [DotEnv](https://www.npmjs.com/package/dotenv)
+
 
 ## Future Development
+-Gym Member user portal
+-“Find a Gym” using maps API to find nearest gym
+-Location services for finding different gym near you
+-Instructor model/table
+
 
