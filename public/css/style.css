@@ -60,6 +60,8 @@ a.nav-link {
     text-align: center;
     padding: 0;
     justify-content: center;
+    background-color: #34332f;
+    color: #34332f;
 }
 input {
     padding: 10px 20px !important;
@@ -222,7 +224,9 @@ footer.nb-footer .about p {
     color: #999;
     margin-top: 30px; }
 footer.nb-footer .about .social-media {
-    margin-top: 15px; }
+    margin-top: 15px;
+    display: inline-block;
+}
 footer.nb-footer .about .social-media ul li a {
     display: inline-block;
     width: 45px;
