@@ -1,6 +1,6 @@
 // const moment = require('moment');
 
-async function signupHandler(event) {
+async function resetHandler(event) {
     event.preventDefault()
     const first_name = document.querySelector('#firstName').value.trim();
     const last_name = document.querySelector('#lastName').value.trim();
@@ -10,18 +10,18 @@ async function signupHandler(event) {
     const password = document.querySelector('#password').value.trim();
     const confirmPassword = document.querySelector('#confirm-password').value.trim();
     const zipcode = document.querySelector('#zipcode').value.trim();
-    const isVip = document.querySelector('#isVip:checked') ? true : false;
+    // const isVip = document.querySelector('#isVip:checked') ? true : false;
     // date_of_birth = moment(date_of_birth).format('MM DD YYYY')
-    console.log(date_of_birth, first_name, last_name, email, phone_number, password, zipcode, isVip);
-    if ((password.length >= 8 && confirmPassword) && first_name && last_name && email && phone_number && date_of_birth && zipcode) {
-        const response = await fetch('/api/users/signup', {
-            method: 'POST',
-            body: JSON.stringify({first_name, last_name, email, phone_number, date_of_birth, password, zipcode, isVip}),
+    console.log(date_of_birth, first_name, last_name, email, phone_number, password, zipcode, confirmPassword);
+    if ((password.length >= 8 && password === confirmPassword) && first_name && last_name && email && phone_number && date_of_birth && zipcode) {
+        const response = await fetch('/api/users/reset', {
+            method: 'PUT',
+            body: JSON.stringify({first_name, last_name, email, phone_number, date_of_birth, password, zipcode,}),
             headers: {'Content-Type': 'application/json'}
         });
         if(response.ok) {
-            swal("You've signed up!");
-            document.location.replace('/');
+            swal("Password Reset!");
+            document.location.replace('/login');
         }else{
             alert(response.statusText);
         }
@@ -30,4 +30,4 @@ async function signupHandler(event) {
     }
 }
 
-document.querySelector('.signup-form').addEventListener('submit', signupHandler);
+document.querySelector('.reset-form').addEventListener('submit', resetHandler);
