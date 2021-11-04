@@ -1,7 +1,8 @@
 const User = require('./User');
 const Activity = require('./Activity');
 const Timeslot = require('./Timeslot');
-const Booked = require('./Booked')
+const Booked = require('./Booked');
+const Location = require('./Location');
 
 
 User.belongsToMany(Timeslot, {
@@ -32,4 +33,4 @@ Timeslot.belongsToMany(User,{
 
 
 
-module.exports = { User, Activity, Timeslot, Booked };
+module.exports = { User, Activity, Timeslot, Booked, Location };

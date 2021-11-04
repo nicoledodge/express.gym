@@ -13,6 +13,11 @@
       "instructor": "Some Dude",
       "time": "5:00",
       "activity_id": 1
+    },
+    {
+      "instructor": "Alex",
+      "time": "14:00",
+      "activity_id": 3
     }
 ]
   
