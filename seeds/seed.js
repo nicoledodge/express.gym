@@ -1,9 +1,10 @@
 const sequelize = require('../config/connection');
-const { User,Timeslot,Activity, Booked } = require('../models');
+const { User,Timeslot,Activity, Location } = require('../models');
 
 const userData = require('./userData.json');
-const timeslotData = require('./timeslotData.json')
-const activityData = require('./activityData.json')
+const timeslotData = require('./timeslotData.json');
+const activityData = require('./activityData.json');
+const locationData = require('./locationData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -19,6 +20,11 @@ const seedDatabase = async () => {
   });
 
   await Timeslot.bulkCreate(timeslotData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  await Location.bulkCreate(locationData, {
     individualHooks: true,
     returning: true,
   });
