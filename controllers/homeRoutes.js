@@ -65,6 +65,23 @@ router.get('/vip', async (req, res) => {
     return;
   });
 
+router.get('/locations', withAuth, async (req, res) => {
+  try {
+    const locationData = await Location.findAll();
+
+    const locations = locationData.map((location) => location.get({
+      plain: true
+    }));
+
+    res.render('locations', {
+      locations
+    });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/profile', withAuth, async (req, res) => {
 
   try {
