@@ -15,6 +15,7 @@ async function timeslotHandler(event) {
     });
     console.log(response);
     if (response.ok) {
+        await swal("You've signed up for the class!");
         document.location.replace('/');
     } else if (response.status == 400) {
         const message = await response.json();
