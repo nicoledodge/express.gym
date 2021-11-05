@@ -8,7 +8,9 @@ async function signupHandler(event) {
     const password = document.querySelector('#password').value.trim();
     const confirmPassword = document.querySelector('#passwordReenter').value.trim();
     const zipcode = document.querySelector('#zipcode').value.trim();
+
     const isVip = document.querySelector('#isVip:checked') ? true : false;
+    
     const password2 = document.querySelector('#passwordReenter').value.trim();
     if(!password == password2) {
         swal("passwords do not match!");
