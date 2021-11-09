@@ -1,9 +1,9 @@
-# *Name of our app
+# Express.gym
 ##  Project 2
 
-URL: https://nicoledodge.github.io/Project2/  
+URL: https://express-gym.herokuapp.com/  
 Version 1.0  
-Deployment Date: 10/31/2021  *spooky*  
+Deployment Date: 10/31/2021 
 
 ![Team Profile Demo](https://github.com/nicoledodge/express.gym/blob/main/public/images/express.gym%20demo.gif?raw=true)
 
