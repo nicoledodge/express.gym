@@ -1,5 +1,7 @@
 # Express.gym
-##  Project 2
+A fitness platform that allows users to create accounts, login/logout, upgrade memberships, and book classes 
+
+##  Full Stack App using MySQL 
 
 URL: https://express-gym.herokuapp.com/  
 Version 1.0  
